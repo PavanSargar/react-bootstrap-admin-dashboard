@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --offcanvas-width: 270px;
+  --topNavbarHeight: 62px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sidebar-nav {
+  width: var(--offcanvas-width) !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sidebar-link {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.sidebar-link .right-icon {
+  display: inline-flex;
+  transition: all ease 0.25s;
 }
 
-.App-link {
-  color: #61dafb;
+.sidebar-link[aria-expanded="true"] .right-icon {
+  transform: rotate(180deg);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.offcanvas-header {
+  color: white !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  display: none;
+}
+
+.offcanvas-header button {
+  color: white !important;
+  box-shadow: none !important;
+}
+
+.offcanvas-header button:focus {
+  box-shadow: none !important;
+}
+
+.offcanvas {
+  transition: none !important;
+}
+
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
   }
-  to {
-    transform: rotate(360deg);
+  .offcanvas-backdrop {
+    display: none !important;
+  }
+  main {
+    margin-left: var(--offcanvas-width);
+  }
+  .sidebar-nav {
+    transform: none;
+    visibility: visible !important;
+    top: var(--topNavbarHeight) !important;
+    height: calc(100% - var(--topNavbarHeight));
+  }
+}
+
+@media (max-width: 992px) {
+  .offcanvas-header {
+    display: flex;
+  }
+  .offcanvas-header {
+    color: white !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .offcanvas-header button {
+    color: white !important;
+    box-shadow: none !important;
+  }
+  .offcanvas { 
+    transition: transform .3s ease-in-out !important; 
   }
 }
